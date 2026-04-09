@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Home/Index', [
+    return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -14,26 +14,26 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/shop', function () {
-    return Inertia::render('Shop/Index');
-})->name('shop');
+Route::get('/cataleg', function () {
+    return Inertia::render('Cataleg');
+})->name('cataleg');
 
-Route::get('/about', function () {
-    return Inertia::render('Company/About');
-})->name('about');
+Route::get('/qui-som', function () {
+    return Inertia::render('QuiSom');
+})->name('qui-som');
 
-Route::get('/contact', function () {
-    return Inertia::render('Company/Contact');
-})->name('contact');
+Route::get('/contacte', function () {
+    return Inertia::render('Contacte');
+})->name('contacte');
 
-Route::get('/profile', function () {
-    return Inertia::render('Profile/Index');
-})->middleware(['auth', 'verified'])->name('profile');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/account', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/account', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/account', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
